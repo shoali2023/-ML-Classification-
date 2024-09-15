@@ -1,0 +1,75 @@
+# Decision Tree Classifier Project
+
+This project demonstrates how to preprocess a dataset and train a decision tree classifier using Python libraries such as Pandas, NumPy, Matplotlib, and Scikit-learn. The dataset was obtained from the link provided below, and the code includes visualization of the decision tree using Graphviz and Pydotplus.
+
+## Dataset
+
+The dataset used in this project was obtained from the following link:
+
+[Dataset Source](https://github.com/mahesh147/Decision-Tree-Classifier/blob/bd03516e6ec6f2b26c3c381560dd403c11e3bc0d/Social_Network_Ads.csv)
+
+## Libraries Used
+
+The following libraries were used for data preprocessing, modeling, and visualization:
+
+- **Pandas**: For data manipulation and analysis.
+- **NumPy**: For numerical computations.
+- **Matplotlib**: For plotting data and visualizing results.
+- **Scikit-learn**: For machine learning, including the decision tree classifier and train/test split.
+- **Graphviz**: For visualizing the decision tree structure.
+- **Pydotplus**: For working with decision tree graphs.
+- **IPython**: For displaying images within Jupyter notebooks.
+
+## Preprocessing Steps
+
+1. **Data Loading**: The dataset was loaded into a Pandas DataFrame.
+2. **Data Cleaning**: Necessary preprocessing steps like handling missing values, feature encoding, and data normalization were performed.
+3. **Feature Encoding**: Categorical variables were encoded using Scikit-learn's `preprocessing` module.
+4. **Train/Test Split**: The dataset was split into training and test sets using `train_test_split`.
+
+## Model Training
+
+A decision tree classifier was trained using the `DecisionTreeClassifier` from Scikit-learn. The model was trained on the preprocessed data, and the performance was evaluated using accuracy and other relevant metrics.
+
+## Visualization
+
+The decision tree was visualized using `Graphviz` and `Pydotplus`. The tree was plotted using the `plot_tree` function from Scikit-learn for better interpretability.
+
+## Example Code
+
+Here’s a brief example of the code used in the project:
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import graphviz
+from sklearn.tree import export_graphviz
+import pydotplus
+from IPython.display import Image
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+# Load the dataset
+data = pd.read_csv('your_dataset.csv')
+
+# Preprocessing steps...
+
+# Train/Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Train the Decision Tree model
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+
+# Visualize the Decision Tree
+dot_data = export_graphviz(clf, out_file=None, 
+                           feature_names=feature_names,  
+                           class_names=class_names,  
+                           filled=True, rounded=True,  
+                           special_characters=True)  
+graph = pydotplus.graph_from_dot_data(dot_data)  
+Image(graph.create_png())
